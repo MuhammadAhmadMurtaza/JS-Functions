@@ -20,6 +20,8 @@ The project is a single file, `index.js`, with three examples:
 - `sum(a, b, c = 3)`, a function with a **default parameter** that **returns** a value
 - `func1`, an **arrow function**
 
+I also added **35 practice tasks** in five parts, each with a test block and collapsible solutions, so I can keep writing functions of my own. See [Practice Tasks](#-practice-tasks).
+
 There is no HTML page. Everything runs in **Node.js** (or the browser console) and prints with `console.log()`.
 
 ---
@@ -35,12 +37,13 @@ There is no HTML page. Everything runs in **Node.js** (or the browser console) a
 7. [Expected Console Output](#-expected-console-output)
 8. [Declarations vs Arrow Functions](#-declarations-vs-arrow-functions)
 9. [Preview: Turning My Loop Problems into Functions](#-preview-turning-my-loop-problems-into-functions)
-10. [Known Gaps & Improvements](#-known-gaps--improvements)
-11. [Try It Yourself](#-try-it-yourself)
-12. [How to Run](#-how-to-run)
-13. [Cheat Sheet](#-cheat-sheet)
-14. [Key Takeaways](#-key-takeaways)
-15. [Roadmap](#-roadmap)
+10. [Practice Tasks](#-practice-tasks)
+11. [Known Gaps & Improvements](#-known-gaps--improvements)
+12. [Try It Yourself](#-try-it-yourself)
+13. [How to Run](#-how-to-run)
+14. [Cheat Sheet](#-cheat-sheet)
+15. [Key Takeaways](#-key-takeaways)
+16. [Roadmap](#-roadmap)
 
 ---
 
@@ -50,10 +53,11 @@ There is no HTML page. Everything runs in **Node.js** (or the browser console) a
 js-fundamentals/
 │
 └── 04-functions/
-    └── index.js      # nice(), sum(), and an arrow function
+    ├── index.js       # nice(), sum(), and an arrow function
+    └── practice.js    # my solutions to the practice tasks (create this file yourself)
 ```
 
-> 💡 Rename the folder to match your own layout.
+> 💡 Rename the folder to match your own layout. `practice.js` doesn't exist yet. It is where the solutions to the [Practice Tasks](#-practice-tasks) go.
 
 ---
 
@@ -596,6 +600,417 @@ Now I can test many inputs with one loop and finally see **every branch** of a p
 
 ---
 
+## 🏋️ Practice Tasks
+
+Here are **35 extra practice tasks** I wrote to go beyond `index.js`. Every solution below was run in Node.js and the expected output matches.
+
+**How to use this section**
+
+1. Create a file called `practice.js` inside `04-functions/`.
+2. Read the task table and write the function **yourself** first.
+3. Paste the test lines under it and compare your output with the `// expected` comments.
+4. Only then open the solution to compare.
+
+> 💡 Node may print arrays with more than 6 numbers across several lines. The values are the same, only the layout differs.
+
+<table>
+  <tr><th>Part</th><th>Focus</th><th>Tasks</th></tr>
+  <tr><td>A</td><td>Warm-ups: parameters, defaults, <code>return</code>, arrows</td><td>8</td></tr>
+  <tr><td>B</td><td>Conditions and loops inside functions</td><td>8</td></tr>
+  <tr><td>C</td><td>Challenges: functions calling functions, arrays, functions as values</td><td>7</td></tr>
+  <tr><td>D</td><td>Find the bug</td><td>5</td></tr>
+  <tr><td>E</td><td>Your turn: no solutions shown</td><td>7</td></tr>
+</table>
+
+---
+
+### 🅰️ Part A: Warm-ups
+
+<table>
+  <tr><th>#</th><th>Function</th><th>Task</th><th>Concept</th></tr>
+  <tr><td>1</td><td><code>greet(name, greeting = "Hello")</code></td><td>Return <code>"Hello, Ali!"</code>. The greeting is optional.</td><td>Default parameter</td></tr>
+  <tr><td>2</td><td><code>square(n)</code></td><td>Return <code>n * n</code> as an arrow function.</td><td>Implicit return</td></tr>
+  <tr><td>3</td><td><code>isEven(n)</code></td><td>Return <code>true</code> or <code>false</code>.</td><td>Returning a boolean</td></tr>
+  <tr><td>4</td><td><code>maxOf(a, b)</code></td><td>Return the larger number using the ternary operator.</td><td>Ternary</td></tr>
+  <tr><td>5</td><td><code>celsiusToFahrenheit(c)</code></td><td>Convert with <code>c * 9 / 5 + 32</code>.</td><td>Formulas</td></tr>
+  <tr><td>6</td><td><code>circleArea(r)</code></td><td>Return the area rounded to 2 decimals.</td><td><code>Math.PI</code>, <code>toFixed</code></td></tr>
+  <tr><td>7</td><td><code>average(a, b, c)</code></td><td>Return the average of three numbers.</td><td>Arithmetic</td></tr>
+  <tr><td>8</td><td><code>printTable(num, upTo = 10)</code></td><td>Print the multiplication table. It prints, it does not return.</td><td>Loop inside a function</td></tr>
+</table>
+
+**Test it**
+
+```js
+console.log(greet("Ali"));                        // Hello, Ali!
+console.log(greet("Sara", "Welcome"));            // Welcome, Sara!
+console.log(square(5));                           // 25
+console.log(isEven(10), isEven(7));               // true false
+console.log(maxOf(3, 9), maxOf(12, 4));           // 9 12
+console.log(celsiusToFahrenheit(100));            // 212
+console.log(celsiusToFahrenheit(0));              // 32
+console.log(celsiusToFahrenheit(-40));            // -40
+console.log(circleArea(5));                       // 78.54
+console.log(average(10, 20, 30));                 // 20
+printTable(5, 3);                                 // 5 x 1 = 5, 5 x 2 = 10, 5 x 3 = 15 (one per line)
+```
+
+<details>
+<summary><b>👀 Show solutions for Part A</b></summary>
+
+```js
+function greet(name, greeting = "Hello") {
+  return greeting + ", " + name + "!";
+}
+
+const square = (n) => n * n;
+
+const isEven = (n) => n % 2 === 0;
+
+const maxOf = (a, b) => (a > b ? a : b);
+
+const celsiusToFahrenheit = (c) => (c * 9) / 5 + 32;
+
+const circleArea = (r) => Number((Math.PI * r * r).toFixed(2));
+
+const average = (a, b, c) => (a + b + c) / 3;
+
+function printTable(num, upTo = 10) {
+  for (let i = 1; i <= upTo; i++) {
+    console.log(num + " x " + i + " = " + num * i);
+  }
+}
+```
+
+**Notes:** `toFixed` returns a string, so `Number(...)` turns it back into a number. In `greet`, the default parameter goes **last**, which matters again in Part D.
+
+</details>
+
+---
+
+### 🅱️ Part B: Conditions and Loops Inside Functions
+
+<table>
+  <tr><th>#</th><th>Function</th><th>Task</th><th>Concept</th></tr>
+  <tr><td>9</td><td><code>countVowels(text)</code></td><td>Count the vowels, ignoring case.</td><td><code>for...of</code>, <code>includes</code></td></tr>
+  <tr><td>10</td><td><code>fizzBuzz(n)</code></td><td>Return <code>"FizzBuzz"</code> for multiples of 15, <code>"Fizz"</code> for 3, <code>"Buzz"</code> for 5, otherwise <code>n</code>.</td><td>Order of conditions</td></tr>
+  <tr><td>11</td><td><code>factorial(n)</code></td><td>Return <code>n!</code>. Return <code>null</code> for negative numbers.</td><td>Loop + guard clause</td></tr>
+  <tr><td>12</td><td><code>reverseString(text)</code></td><td>Return the text reversed.</td><td>Backwards loop</td></tr>
+  <tr><td>13</td><td><code>isPalindrome(text)</code></td><td>Ignore case. Reuse <code>reverseString</code>.</td><td>A function calling a function</td></tr>
+  <tr><td>14</td><td><code>sumOfDigits(n)</code></td><td>Add the digits. Negative numbers should work too.</td><td><code>while</code>, <code>%</code>, <code>Math.floor</code></td></tr>
+  <tr><td>15</td><td><code>getGrade(marks)</code></td><td>A ≥ 90, B ≥ 80, C ≥ 70, D ≥ 60, else F. Return <code>"Invalid"</code> outside 0 to 100.</td><td>Early returns</td></tr>
+  <tr><td>16</td><td><code>calculateBill(units)</code></td><td>First 100 units cost 10 each, the next 200 cost 15 each, anything above 300 costs 20 each.</td><td>Tiered pricing</td></tr>
+</table>
+
+**Test it**
+
+```js
+console.log(countVowels("Programming"));          // 3
+console.log(countVowels("Apple"));                // 2
+console.log(countVowels("rhythm"));               // 0
+console.log(fizzBuzz(3), fizzBuzz(5), fizzBuzz(15), fizzBuzz(7)); // Fizz Buzz FizzBuzz 7
+console.log(factorial(5));                        // 120
+console.log(factorial(0));                        // 1
+console.log(factorial(-3));                       // null
+console.log(reverseString("hello"));              // olleh
+console.log(isPalindrome("Level"), isPalindrome("hello")); // true false
+console.log(sumOfDigits(1234));                   // 10
+console.log(sumOfDigits(-905));                   // 14
+console.log(getGrade(95), getGrade(82), getGrade(70), getGrade(59), getGrade(101)); // A B C F Invalid
+console.log(calculateBill(80), calculateBill(250), calculateBill(350)); // 800 3250 5000
+```
+
+<details>
+<summary><b>👀 Show solutions for Part B</b></summary>
+
+```js
+function countVowels(text) {
+  const vowels = "aeiou";
+  let count = 0;
+  for (const ch of text.toLowerCase()) {
+    if (vowels.includes(ch)) {
+      count++;
+    }
+  }
+  return count;
+}
+
+function fizzBuzz(n) {
+  if (n % 15 === 0) return "FizzBuzz"; // check 15 first!
+  if (n % 3 === 0) return "Fizz";
+  if (n % 5 === 0) return "Buzz";
+  return n;
+}
+
+function factorial(n) {
+  if (n < 0) return null;
+  let result = 1;
+  for (let i = 2; i <= n; i++) {
+    result *= i;
+  }
+  return result;
+}
+
+function reverseString(text) {
+  let reversed = "";
+  for (let i = text.length - 1; i >= 0; i--) {
+    reversed += text[i];
+  }
+  return reversed;
+}
+
+function isPalindrome(text) {
+  const clean = text.toLowerCase();
+  return clean === reverseString(clean);
+}
+
+function sumOfDigits(n) {
+  let remaining = Math.abs(n);
+  let sum = 0;
+  while (remaining > 0) {
+    sum += remaining % 10;
+    remaining = Math.floor(remaining / 10);
+  }
+  return sum;
+}
+
+function getGrade(marks) {
+  if (marks < 0 || marks > 100) return "Invalid";
+  if (marks >= 90) return "A";
+  if (marks >= 80) return "B";
+  if (marks >= 70) return "C";
+  if (marks >= 60) return "D";
+  return "F";
+}
+
+function calculateBill(units) {
+  if (units <= 100) return units * 10;
+  if (units <= 300) return 100 * 10 + (units - 100) * 15;
+  return 100 * 10 + 200 * 15 + (units - 300) * 20;
+}
+```
+
+**Notes:** `fizzBuzz` must test `15` first, otherwise `15` would stop at `Fizz`. In `getGrade`, each `return` ends the function, so no `else` is needed.
+
+</details>
+
+---
+
+### 🧩 Part C: Challenges
+
+<table>
+  <tr><th>#</th><th>Function</th><th>Task</th><th>Concept</th></tr>
+  <tr><td>17</td><td><code>calculate(a, operator, b)</code></td><td>Support <code>+ - * /</code>. Return <code>"Cannot divide by zero"</code> and <code>"Unknown operator"</code> when needed.</td><td>Several returns</td></tr>
+  <tr><td>18</td><td><code>isLeapYear(year)</code></td><td>Divisible by 4, except centuries, unless divisible by 400.</td><td>Combined conditions</td></tr>
+  <tr><td>19</td><td><code>daysInYear(year)</code></td><td>Return 366 or 365. Reuse <code>isLeapYear</code>.</td><td>Function calling function</td></tr>
+  <tr><td>20</td><td><code>primesUpTo(limit)</code></td><td>Return an array of all primes up to <code>limit</code>. Reuse <code>isPrime</code> from the preview section.</td><td>Arrays, <code>push</code></td></tr>
+  <tr><td>21</td><td><code>fibonacci(count)</code></td><td>Return the first <code>count</code> Fibonacci numbers.</td><td>Swapping two values</td></tr>
+  <tr><td>22</td><td><code>applyTwice(fn, x)</code></td><td>Call <code>fn</code> on <code>x</code>, then call it again on the result.</td><td>Functions as arguments</td></tr>
+  <tr><td>23</td><td><code>multiplier(factor)</code></td><td>Return a <b>new function</b> that multiplies by <code>factor</code>.</td><td>Returning a function (a preview of closures)</td></tr>
+</table>
+
+**Test it**
+
+```js
+console.log(calculate(8, "+", 2));                // 10
+console.log(calculate(8, "-", 2));                // 6
+console.log(calculate(8, "*", 2));                // 16
+console.log(calculate(8, "/", 2));                // 4
+console.log(calculate(8, "/", 0));                // Cannot divide by zero
+console.log(calculate(8, "%", 2));                // Unknown operator
+console.log(isLeapYear(2024), isLeapYear(1900), isLeapYear(2000)); // true false true
+console.log(daysInYear(2024), daysInYear(2023));  // 366 365
+console.log(primesUpTo(30));                      // 2, 3, 5, 7, 11, 13, 17, 19, 23, 29
+console.log(fibonacci(10));                       // 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+console.log(fibonacci(1), fibonacci(0));          // [ 0 ] []
+console.log(applyTwice(square, 3));               // 81
+console.log(applyTwice((x) => x + 5, 10));        // 20
+const double = multiplier(2);
+const triple = multiplier(3);
+console.log(double(5), triple(5));                // 10 15
+```
+
+<details>
+<summary><b>👀 Show solutions for Part C</b></summary>
+
+```js
+function calculate(a, operator, b) {
+  if (operator === "+") return a + b;
+  if (operator === "-") return a - b;
+  if (operator === "*") return a * b;
+  if (operator === "/") {
+    if (b === 0) return "Cannot divide by zero";
+    return a / b;
+  }
+  return "Unknown operator";
+}
+
+function isLeapYear(year) {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+
+function daysInYear(year) {
+  return isLeapYear(year) ? 366 : 365;
+}
+
+// from the preview section
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let d = 2; d * d <= n; d++) {
+    if (n % d === 0) return false;
+  }
+  return true;
+}
+
+function primesUpTo(limit) {
+  const primes = [];
+  for (let n = 2; n <= limit; n++) {
+    if (isPrime(n)) {
+      primes.push(n);
+    }
+  }
+  return primes;
+}
+
+function fibonacci(count) {
+  const result = [];
+  let a = 0, b = 1;
+  for (let i = 0; i < count; i++) {
+    result.push(a);
+    [a, b] = [b, a + b]; // swap without a temp variable
+  }
+  return result;
+}
+
+const applyTwice = (fn, x) => fn(fn(x));
+
+function multiplier(factor) {
+  return (x) => x * factor;
+}
+```
+
+**Notes:** `multiplier(2)` returns a function that **remembers** `factor = 2`. That memory is called a *closure*, and it is on the roadmap. `applyTwice(square, 3)` uses the `square` function from Part A.
+
+</details>
+
+---
+
+### 🐞 Part D: Find the Bug
+
+Each snippet below has one bug. Read the code, predict the output, then open the fix.
+
+<table>
+  <tr><th>#</th><th>Buggy code</th><th>What it prints</th></tr>
+  <tr>
+    <td>24</td>
+    <td><pre>function add(a, b) {
+  a + b;
+}
+console.log(add(2, 3));</pre></td>
+    <td><code>undefined</code></td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td><pre>function greet(greeting = "Hello", name) {
+  return greeting + ", " + name + "!";
+}
+console.log(greet("Ali"));</pre></td>
+    <td><code>Ali, undefined!</code></td>
+  </tr>
+  <tr>
+    <td>26</td>
+    <td><pre>function add(a, b) {
+  return a + b;
+}
+const total = add;
+console.log(total);</pre></td>
+    <td><code>[Function: add]</code> instead of a number</td>
+  </tr>
+  <tr>
+    <td>27</td>
+    <td><pre>function sumTo(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += i;
+    return sum;
+  }
+}
+console.log(sumTo(5));</pre></td>
+    <td><code>1</code> instead of 15</td>
+  </tr>
+  <tr>
+    <td>28</td>
+    <td><pre>const double = (x) => {
+  x * 2;
+};
+console.log(double(4));</pre></td>
+    <td><code>undefined</code></td>
+  </tr>
+</table>
+
+<details>
+<summary><b>🔧 Show the fixes</b></summary>
+
+<table>
+  <tr><th>#</th><th>Cause</th><th>Fix</th></tr>
+  <tr>
+    <td>24</td>
+    <td>No <code>return</code>. The sum is calculated and thrown away, so the function returns <code>undefined</code>.</td>
+    <td><code>return a + b;</code></td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td>A default parameter placed first is only used when you pass <code>undefined</code> explicitly. <code>"Ali"</code> lands in <code>greeting</code>.</td>
+    <td>Put defaults last: <code>function greet(name, greeting = "Hello")</code>. Now it prints <code>Hello, Ali!</code></td>
+  </tr>
+  <tr>
+    <td>26</td>
+    <td>Missing parentheses. <code>add</code> is the function itself, <code>add(2, 3)</code> is the call.</td>
+    <td><code>const total = add(2, 3);</code> prints <code>5</code></td>
+  </tr>
+  <tr>
+    <td>27</td>
+    <td><code>return</code> sits <b>inside</b> the loop, so the function exits after the first pass.</td>
+    <td>Move <code>return sum;</code> after the closing brace of the loop. <code>sumTo(5)</code> gives <code>15</code></td>
+  </tr>
+  <tr>
+    <td>28</td>
+    <td>Curly braces turn the arrow function into a normal body, and a normal body needs <code>return</code>.</td>
+    <td><code>const double = (x) => x * 2;</code> or <code>(x) => { return x * 2; }</code>. <code>double(4)</code> gives <code>8</code></td>
+  </tr>
+</table>
+
+</details>
+
+---
+
+### 🎯 Part E: Your Turn (No Solutions)
+
+These are for you. The expected results are given so you can check yourself.
+
+<table>
+  <tr><th>#</th><th>Function</th><th>Task</th><th>Check with</th></tr>
+  <tr><td>29</td><td><code>gcd(a, b)</code></td><td>Greatest common divisor. Hint: keep replacing <code>(a, b)</code> with <code>(b, a % b)</code> until <code>b</code> is 0.</td><td><code>gcd(48, 18)</code> → <code>6</code><br><code>gcd(7, 13)</code> → <code>1</code></td></tr>
+  <tr><td>30</td><td><code>isArmstrong(n)</code></td><td>True if the sum of each digit raised to the number of digits equals the number.</td><td><code>153</code> → <code>true</code><br><code>154</code> → <code>false</code><br><code>9474</code> → <code>true</code></td></tr>
+  <tr><td>31</td><td><code>secondLargest(nums)</code></td><td>Return the second largest value in an array without sorting it.</td><td><code>[4, 9, 2, 15, 7]</code> → <code>9</code></td></tr>
+  <tr><td>32</td><td><code>countWords(sentence)</code></td><td>Count the words in a sentence.</td><td><code>"I love JavaScript"</code> → <code>3</code></td></tr>
+  <tr><td>33</td><td><code>capitalize(word)</code></td><td>Make the first letter uppercase.</td><td><code>"javascript"</code> → <code>"Javascript"</code></td></tr>
+  <tr><td>34</td><td><code>sumArray(arr)</code></td><td>Add up an array. An empty array gives 0.</td><td><code>[1, 2, 3, 4]</code> → <code>10</code><br><code>[]</code> → <code>0</code></td></tr>
+  <tr><td>35</td><td><code>isSorted(arr)</code></td><td>True if the numbers are in ascending order.</td><td><code>[1, 2, 3]</code> → <code>true</code><br><code>[3, 1, 2]</code> → <code>false</code></td></tr>
+</table>
+
+**Bonus:** `primesUpTo(100).length` should be `25`.
+
+### ✅ Practice Progress
+
+- [ ] Part A: warm-ups (1 to 8)
+- [ ] Part B: conditions and loops (9 to 16)
+- [ ] Part C: challenges (17 to 23)
+- [ ] Part D: find the bug (24 to 28)
+- [ ] Part E: your turn (29 to 35)
+- [ ] Rewrite **my own** earlier loop problems as functions with parameters and `return`
+
+---
+
 ## 🔍 Known Gaps & Improvements
 
 Here is what I found while reviewing the code, with a fix for each.
@@ -736,6 +1151,9 @@ cd <your-repo-name>/04-functions
 
 # 3. Run the file
 node index.js
+
+# 4. Run my practice solutions (after you create practice.js)
+node practice.js
 ```
 
 **Or run in the browser:** create an HTML page that loads the script, open it, and check the **Console** tab (`F12`).
@@ -826,6 +1244,14 @@ function greet(name = "friend") { return "Hello " + name; }
     <td>✅</td>
     <td>Functions make earlier work testable: one function, many inputs.</td>
   </tr>
+  <tr>
+    <td>✅</td>
+    <td>Functions can call other functions, return arrays, take functions as arguments, and even return new functions.</td>
+  </tr>
+  <tr>
+    <td>✅</td>
+    <td>Most function bugs are one of four things: a missing <code>return</code>, <code>return</code> in the wrong place, missing <code>()</code> on a call, or a default parameter in the wrong position.</td>
+  </tr>
 </table>
 
 ---
@@ -836,6 +1262,8 @@ function greet(name = "friend") { return "Hello " + name; }
 - [x] Operators, `if / else`, and the ternary operator
 - [x] Loops and ten loop problems
 - [x] Functions: declarations, parameters, defaults, `return`, and arrow functions
+- [x] Practice tasks A to E written (35 functions)
+- [ ] Solve all [practice tasks](#-practice-tasks) in my own `practice.js`
 - [ ] Fix the [known gaps](#-known-gaps--improvements)
 - [ ] Rewrite the loop and conditional problems as reusable functions
 - [ ] Function scope and closures
